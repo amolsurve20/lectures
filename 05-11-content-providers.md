@@ -174,7 +174,8 @@ Let's begin putting these together... as constants of course:
 - We can also define the resource type we care about (which happens to be the name of the table, but it doesn't need to be!)
 - Finally, we can define the overall base URI (the "Content URI") by combining these together and parsing it into a Uri object:
 ```java
-public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/"+WORD_RES);
+public static final Uri CONTENT_URI =
+  Uri.parse("content://" + AUTHORITY + "/"+WORD_RESOURCE);
 ```
 
 But we also need to handle both types of resources: the "list" of words, and the individual words themselves. To enable this, we're going to use a class called a [`UriMatcher`](http://developer.android.com/reference/android/content/UriMatcher.html). This class provides a _mapping_ between Uri paths (think: URLs) and the actual "type" of data we're interested in (either lists or words).
@@ -188,6 +189,7 @@ But we also need to handle both types of resources: the "list" of words, and the
   - So if you give me `/words`, I can tell you that you're interested in "resource kind \#1"
 
 - We want to make a a `static UriMatcher` object (like a constant) that we can query... but because it takes more than one line to set this up, we need to put it inside a `static` block so that all this code is run together.
+
   ```java
   private static final UriMatcher sUriMatcher; //for handling Uri requests
   static {
