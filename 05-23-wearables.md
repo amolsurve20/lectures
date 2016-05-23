@@ -96,12 +96,6 @@ Luckily, Android provides [shape-aware layouts](https://developer.android.com/tr
 - Note the slick part of this is that the `BoxInsetLayout` fills the screen, but the `FrameLayout` content does not! If we assign colored backgrounds, we can see how this works (and how it is modified by the padding we specify)
 
 
-//cards (fragment review)
-  //not look like much... but we can also do paging!
-
-//can also include a voice activation
-
-
 ### Cards
 There are a number of different wear-specific [ui elements](http://developer.android.com/training/wearables/apps/layouts.html#UiLibrary) (i.e., Views) we can use, and I'd encourage you to look through those options. We're only going to demo a few of them today (for time).
 
@@ -112,15 +106,16 @@ We're going to use the [`CardFragment`](https://developer.android.com/reference/
 - First we'll want to make sure our `FrameLayout` (inside our `BoxInsetLayout`) has an id so we can inflate the fragment into it.
 - We can then create the `Fragment` in code. While we could probably subclass `CardFragment`, it's easier to just use a [factory](http://developer.android.com/reference/android/support/wearable/view/CardFragment.html) method to produce a generic card for us (remember, this allows us to not have to instantiate new fragments?)
 - Finally, we can use a `FragmentManager` (just like before) to put our fragment into the layout:
-```java
-CardFragment cardFragment =
-    CardFragment.create("A card", "This is my card"); //no icon
 
-FragmentManager fragmentManager = getFragmentManager();
-FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-fragmentTransaction.add(R.id.container, cardFragment);
-fragmentTransaction.commit();
-```
+  ```java
+  CardFragment cardFragment =
+      CardFragment.create("A card", "This is my card"); //no icon
+
+  FragmentManager fragmentManager = getFragmentManager();
+  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+  fragmentTransaction.add(R.id.container, cardFragment);
+  fragmentTransaction.commit();
+  ```
 
 Note that We can define the Fragment inside the `xml` resource [directly](http://developer.android.com/training/wearables/ui/cards.html#card-layout) by using a couple other utility Views. I'll leave that as an exercise to the reader.
 
